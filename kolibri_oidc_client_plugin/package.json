@@ -9,13 +9,13 @@
   "private": true,
   "dependencies": {
     "intl": "^1.2.4",
-    "kolibri": "^0.13.0-dev.8",
-    "kolibri-components": "0.13.0-dev.8",
+    "kolibri": "^0.14.4-dev.2",
+    "kolibri-components": "^0.13.0-dev.9",
     "vue": "^2.6.8",
     "vue-intl": "3.0.0"
   },
   "devDependencies": {
-    "kolibri-tools": "^0.13.0-dev.8",
+    "kolibri-tools": "^0.14.4-dev.2",
     "webpack": "4.6.0"
   }
 }
