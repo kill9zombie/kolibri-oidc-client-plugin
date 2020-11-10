@@ -5,7 +5,7 @@
   },
   "name": "kolibri-oidc-client-plugin",
   "description": "OpenID Client plugin for Kolibri",
-  "version": "0.0.1",
+  "version": "0.0.3-ins",
   "private": true,
   "dependencies": {
     "intl": "^1.2.4",
