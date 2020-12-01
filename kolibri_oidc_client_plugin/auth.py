@@ -17,6 +17,23 @@ class OIDCKolibriAuthenticationBackend(OIDCAuthenticationBackend):
             username = claim.get("username")
         return username
 
+    def get_gender(self, claim):
+        gender = claim.get("gender", "NOT_SPECIFIED")
+
+        if gender.lower().startswith("m"): return "MALE"
+        if gender.lower().startswith("f"): return "FEMALE"
+        return "NOT_SPECIFIED"
+
+    def get_birthdate(self, claim):
+        # birthdate format is [ISO8601‑2004] YYYY-MM-DD
+        birthdate = claim.get("birthdate", "NOT_SPECIFIED")
+
+        if birthdate.isnumeric() and len(birthdate) >= 4:
+            return birthdate[:4]
+
+        return "NOT_SPECIFIED"
+
+
     def get_or_create_user(self, access_token, id_token, payload):
         """Returns a User instance if 1 user is found. Creates a user if not found
         and configured to do so. Returns nothing if multiple users are matched."""
@@ -76,11 +93,9 @@ class OIDCKolibriAuthenticationBackend(OIDCAuthenticationBackend):
         email = claims.get("email", username)
         # Kolibri doesn't allow an empty password. This isn't going to be used:
         password = uuid4().hex
-        # birthdate format is [ISO8601‑2004] YYYY-MM-DD
-        birthdate = (
-            claims.get("birthdate")[:4] if "birthdate" in claims else "NOT_SPECIFIED"
-        )
-        gender = claims.get("gender", "NOT_SPECIFIED").upper()
+
+        birthdate = self.get_birthdate(claims)
+        gender = self.get_gender(claims)
         user = self.UserModel.objects.create_user(
             username,
             email=email,
