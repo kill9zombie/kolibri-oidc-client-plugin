@@ -108,7 +108,7 @@ class OIDCKolibriAuthenticationBackend(OIDCAuthenticationBackend):
         # check if the user has assigned roles and assign them in such case
         roles = claims.get("roles", [])
         for role in roles:
-            if role.lower() in ("admin", "coach"):
+            if role.lower() in ("admin", "coach", "classroom assignable coach"):
                 try:
                     user.facility.add_role(user, role.lower())
                     if role.lower() == "admin":
