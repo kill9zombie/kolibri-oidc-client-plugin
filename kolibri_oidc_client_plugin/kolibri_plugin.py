@@ -33,10 +33,9 @@ class EnableOIDCClient(LogoutRedirectHook):
     def url(self):
         logout_endpoint = settings.OIDC_OP_LOGOUT_ENDPOINT
         if logout_endpoint:
-            provider_logout_redirect_url = "{endpoint}/?post_logout_redirect_uri={server}{redirect}".format(
+            provider_logout_redirect_url = "{endpoint}/?post_logout_redirect_uri={redirect}".format(
                 endpoint=logout_endpoint,
-                server=settings.OIDC_CLIENT_URL,
-                redirect=reverse(settings.OIDC_AUTHENTICATION_CALLBACK_URL),
+                redirect=settings.INS_HOME_URL,
             )
         else:
             provider_logout_redirect_url = "/"

@@ -35,5 +35,10 @@ option_spec = {
             "default": "",
             "envvars": ("KOLIBRI_OIDC_JWKS_URI",),
         },
+        "INS_HOME_URL": {
+            "type": "string",
+            "default": "https://home.ins.school/",
+            "envvars": ("KOLIBRI_OIDC_INS_HOME_URL",),
+        },
     }
 }

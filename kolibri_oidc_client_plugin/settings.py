@@ -31,3 +31,4 @@ OIDC_TOKEN_USE_BASIC_AUTH = True
 OIDC_RP_SCOPES = "openid profile email"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/"
+INS_HOME_URL = OPTIONS["OIDCClient"].get("INS_HOME_URL", "https://home.ins.school/")
